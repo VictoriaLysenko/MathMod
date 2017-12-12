@@ -16,7 +16,24 @@ namespace MathMod.Controllers
         {
 
         }
-        
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+        public class TestData
+        {
+            public string equation { get; set; }
+            public string koshi { get; set; }
+
+        }
+
+        [System.Web.Http.HttpPost]
+        public JsonResult TestPost(TestData data)
+        {
+            return Json("your equation:" + data.equation + "end your params" + data.koshi);
+        }
+
         public async Task<IEnumerable<double>> EulerMethod(MethodParams methodParams)
         {
             methodParams = new MethodParams();

@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="container_form">
+    <form name="decideEquation">
+        <h1>Title</h1>
+        <div class="first block">
+            <label for="equation">Введіть диференціальне рівняння:</label>
+            <input type="text" id="equation" name="equation">
+        </div>
+        <div class="line">
+
+        </div>
+        <div class="second block">
+            <label for="koshi">Введіть задачу Коші(не обов'язкове поле):</label>
+            <input type="text" id="koshi" name="koshi">
+        </div>
+
+        <div class="third block">
+            <label for="method">Виберіть метод:</label>
+            <select name="method" id="method">
+                <option value="1">-----------</option>
+                <option value="2">----------2</option>
+                <option value="3">----------3</option>
+            </select>
+        </div>
+
+        <div class="run block">
+            <button type="submit">
+                Вирішити
+            </button>
+        </div>
+
+
+    </form>
+</div>
+<div class="result">
+
+</div>
