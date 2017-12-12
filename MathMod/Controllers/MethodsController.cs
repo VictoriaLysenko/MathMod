@@ -20,7 +20,15 @@ namespace MathMod.Controllers
         public async Task<IEnumerable<double>> EulerMethod(MethodParams methodParams)
         {
             methodParams = new MethodParams();
+            methodParams.StartValue = 1;
+            methodParams.EndValue = 3;
+            methodParams.NumberOfStep = 10;
             List<double> result = new List<double>();
+
+            double tau = 1;
+
+            func function = new func(Function);
+            result =  EulerMethodRealisation(function, methodParams.StartValue, methodParams.EndValue, methodParams.NumberOfStep, tau);
             return result; 
         }
         
@@ -43,6 +51,74 @@ namespace MathMod.Controllers
             methodParams = new MethodParams();
             List<double> result = new List<double>();
             return result;
+        }
+
+        public delegate double func(double t);
+
+        public double Function(double t)
+        {
+            return 6 * (t);
+        }
+
+        public static double StartValue(double t)
+        {
+            return t;
+        }
+
+        public static List<double> EulerMethodRealisation(func f, double a, double b, int n, double tau)
+        {
+            double step = tau / n;
+            double result = a;
+            int m = Convert.ToInt32(Math.Ceiling(b / tau));
+            double start = a, end = a + tau;
+
+            double[,] x = new double[m + 1, n + 1];
+            double[] fi = new double[m + 1];
+
+            fi[0] = StartValue(start);
+
+            int l = 0;
+            for (double i = start - tau; i < start; i += step)
+            {
+                x[0, l] = StartValue(i);
+                //Console.WriteLine("{0} = {1} ", i, x[0, l++]);
+            }
+
+            for (int i = 1; i < m; i++)
+            {
+                int k = 0;
+                x[i, 0] = fi[i - 1];
+
+                for (double j = start; j < end; j += step)
+                {
+                    x[i, k + 1] = x[i, k] + step * f(fi[i]);
+                    fi[i] = StartValue(j);
+                    // Console.WriteLine("{0} = {1} ", j, x[i, k]);
+                    k++;
+                }
+
+                fi[i] = x[i, n - 1];
+                start += tau;
+                end += tau;
+            }
+
+            List<double> resultList = new List<double>();
+
+            for (int i = 0; i < m ; i++)
+            {
+                int k = 0;
+                double eps = 0.00001;
+                for (double j = start; j < end; j += step)
+                {
+                    if (j % 0.1 < eps)
+                    {
+                        resultList.Add(x[i, k]);
+                    }
+                    k++;
+                }
+            }
+
+            return resultList;
         }
     }
 }
