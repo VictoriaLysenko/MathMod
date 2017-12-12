@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MathMod.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -16,26 +17,30 @@ namespace MathMod.Controllers
 
         }
         
-        public async Task<IEnumerable<double>> EulerMethod()
+        public async Task<IEnumerable<double>> EulerMethod(MethodParams methodParams)
         {
+            methodParams = new MethodParams();
             List<double> result = new List<double>();
             return result; 
         }
         
-        public async Task<IEnumerable<double>> RunheKuta()
+        public async Task<IEnumerable<double>> RunheKuta(MethodParams methodParams)
         {
+            methodParams = new MethodParams();
             List<double> result = new List<double>();
             return result;
         }
         
-        public async Task<IEnumerable<double>> Method3()
+        public async Task<IEnumerable<double>> Method3(MethodParams methodParams)
         {
+            methodParams = new MethodParams();
             List<double> result = new List<double>();
             return result;
         }
         
-        public async Task<IEnumerable<double>> Method4()
+        public async Task<IEnumerable<double>> Method4(MethodParams methodParams)
         {
+            methodParams = new MethodParams();
             List<double> result = new List<double>();
             return result;
         }
