@@ -21,6 +21,7 @@ namespace MathMod.Controllers
         {
             return View();
         }
+
         public class TestData
         {
             public string equation { get; set; }
@@ -41,7 +42,7 @@ namespace MathMod.Controllers
             methodParams.StartValue = 1;
             methodParams.EndValue = 3;
             methodParams.NumberOfStep = 10;
-            IEnumerable<double> result;
+            Dictionary<string, double> result;
 
             double tau = 1;
 
@@ -83,7 +84,7 @@ namespace MathMod.Controllers
             return t;
         }
 
-        public static List<double> EulerMethodRealisation(func f, double a, double b, int n, double tau)
+        public static Dictionary<string, double> EulerMethodRealisation(func f, double a, double b, int n, double tau)
         {
             double step = tau / n;
             double result = a;
@@ -99,7 +100,7 @@ namespace MathMod.Controllers
             for (double i = start - tau; i < start; i += step)
             {
                 x[0, l] = StartValue(i);
-                //Console.WriteLine("{0} = {1} ", i, x[0, l++]);
+                l++;
             }
 
             for (int i = 1; i < m; i++)
@@ -111,7 +112,6 @@ namespace MathMod.Controllers
                 {
                     x[i, k + 1] = x[i, k] + step * f(fi[i]);
                     fi[i] = StartValue(j);
-                    // Console.WriteLine("{0} = {1} ", j, x[i, k]);
                     k++;
                 }
 
@@ -120,7 +120,10 @@ namespace MathMod.Controllers
                 end += tau;
             }
 
-            List<double> resultList = new List<double>();
+            Dictionary<string, double> resultList = new Dictionary<string, double>();
+
+            start = a;
+            end = a + tau;
 
             for (int i = 0; i < m ; i++)
             {
@@ -130,12 +133,15 @@ namespace MathMod.Controllers
                 {
                     if (j % 0.1 < eps)
                     {
-                        resultList.Add(x[i, k]);
+
+                        resultList.Add(j.ToString(), x[i, k]);
                     }
                     k++;
                 }
+                start += tau;
+                end += tau;
             }
-
+            
             return resultList;
         }
     }
