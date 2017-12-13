@@ -24,13 +24,16 @@ span {
 }
 
 .koshi_param {
-    margin: 2px 25px;
-    width: 33%;
+    margin: 2px 0;
+    width: 50%;
+}
+.koshi_param:first-child {
+    margin-right: 20px;
 }
 
 
     .koshi_param input {
-        width: 80px;
+        width: 100%;
     }
 
 

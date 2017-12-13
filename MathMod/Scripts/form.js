@@ -3,12 +3,15 @@
         let form = event.target,
             startValue = form.elements.startValue.value,
             EndValue = form.elements.EndValue.value,
-            NumberOfStep = form.elements.NumberOfStep.value,
+            //NumberOfStep = form.elements.NumberOfStep.value,
             method = form.elements.method.value;
 
         let results = document.getElementsByClassName("result")[0];
 
-        let params = { startValue, EndValue, NumberOfStep };
+        let params = {
+            startValue, EndValue,
+            //NumberOfStep
+        };
         $.ajax({
             type: "POST",
             url: `/methods/${method}/`,
