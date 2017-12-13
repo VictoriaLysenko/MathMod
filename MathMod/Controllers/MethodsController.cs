@@ -38,6 +38,10 @@ namespace MathMod.Controllers
         [System.Web.Http.HttpGet]
         public  JsonResult EulerMethod(MethodParams methodParams)
         {
+            if (methodParams.StartValue < 1)
+            {
+                methodParams.StartValue = 1;
+            }
             methodParams.StartValue = methodParams.StartValue;
             methodParams.EndValue = methodParams.EndValue;
             methodParams.NumberOfStep = 10;
