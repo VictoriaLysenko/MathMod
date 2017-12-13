@@ -38,9 +38,8 @@ namespace MathMod.Controllers
         [System.Web.Http.HttpGet]
         public  JsonResult EulerMethod(MethodParams methodParams)
         {
-            methodParams = new MethodParams();
-            methodParams.StartValue = 1;
-            methodParams.EndValue = 3;
+            methodParams.StartValue = methodParams.StartValue;
+            methodParams.EndValue = methodParams.EndValue;
             methodParams.NumberOfStep = 10;
             Dictionary<string, double> result;
 
@@ -122,8 +121,8 @@ namespace MathMod.Controllers
 
             Dictionary<string, double> resultList = new Dictionary<string, double>();
 
-            start = a;
-            end = a + tau;
+            start = a - tau;
+            end = a;
 
             for (int i = 0; i < m ; i++)
             {
