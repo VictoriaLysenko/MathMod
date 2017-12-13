@@ -6,25 +6,37 @@
 
 
 <div class="container_form">
-    <form name="decideEquation">
-        <h1>Title</h1>
-        <div class="first block">
-            <label for="equation">Введіть диференціальне рівняння:</label>
-            <input type="text" id="equation" name="equation">
-        </div>
-        <div class="line">
 
+    <form id="decideEquation">
+        <h1>Title</h1>
+        <div class="block">
+            <label>Рівняння:</label>
+            <p>y'(t) = 6 * (t - 1); y(t) = t;</p>
         </div>
         <div class="second block">
-            <label for="koshi">Введіть задачу Коші(не обов'язкове поле):</label>
-            <input type="text" id="koshi" name="koshi">
+            <label>Введіть задачу Коші:</label>
+            <div class="koshi_params">
+                <div class="koshi_param">
+                    <label>Початок</label>
+                    <input type="number" id="startValue" name="startValue">
+                </div>
+
+                <div class="koshi_param">
+                    <label>Кінець</label>
+                    <input type="number" id="EndValue" name="EndValue">
+                </div>
+                <div class="koshi_param">
+                    <label>Крок</label>
+                    <input type="number" id="NumberOfStep" step="any" name="NumberOfStep">
+                </div>
+            </div>
         </div>
 
         <div class="third block">
             <label for="method">Виберіть метод:</label>
             <select name="method" id="method">
-                <option value="1">-----------</option>
-                <option value="2">----------2</option>
+                <option value="EulerMethod">Ейлера</option>
+                <option value="RunheKuta">Рунге-Кута</option>
                 <option value="3">----------3</option>
             </select>
         </div>
@@ -38,6 +50,16 @@
 
     </form>
 </div>
-<div class="result">
-
-</div>
+<table class="table" style="width: 600px;
+    margin: 0 auto;
+    background-color: white;">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Точка</th>
+      <th scope="col">Значення</th>
+    </tr>
+  </thead>
+  <tbody id="result">
+  </tbody>
+</table>
