@@ -34,19 +34,20 @@ namespace MathMod.Controllers
             return Json("your equation:" + data.equation + "end your params" + data.koshi);
         }
 
-        public async Task<IEnumerable<double>> EulerMethod(MethodParams methodParams)
+        [System.Web.Http.HttpGet]
+        public  JsonResult EulerMethod(MethodParams methodParams)
         {
             methodParams = new MethodParams();
             methodParams.StartValue = 1;
             methodParams.EndValue = 3;
             methodParams.NumberOfStep = 10;
-            List<double> result = new List<double>();
+            IEnumerable<double> result;
 
             double tau = 1;
 
             func function = new func(Function);
             result =  EulerMethodRealisation(function, methodParams.StartValue, methodParams.EndValue, methodParams.NumberOfStep, tau);
-            return result; 
+            return Json(result, JsonRequestBehavior.AllowGet); 
         }
         
         public async Task<IEnumerable<double>> RunheKuta(MethodParams methodParams)
